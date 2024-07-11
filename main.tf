@@ -1,5 +1,5 @@
 provider "google" {
-  project = "your-gcp-project-id"
+  project = "32919635075"
   region  = "us-central1"
 }
 
@@ -14,14 +14,14 @@ resource "google_sql_database_instance" "default" {
 }
 
 resource "google_sql_database" "default" {
-  name     = "database-name"
+  name     = "trail-task"
   instance = google_sql_database_instance.default.name
 }
 
 resource "google_sql_user" "default" {
-  name     = "user"
+  name     = "chayan"
   instance = google_sql_database_instance.default.name
-  password = "your-password"
+  password = "Chayan@123"
 }
 
 # Setting up cloud run
@@ -31,7 +31,7 @@ resource "google_cloud_run_service" "default" {
   template {
     spec {
       containers {
-        image = "gcr.io/your-gcp-project-id/your-image"
+        image = "gcr.io/modular-virtue-429117-h8/trail-task"
       }
     }
   }
